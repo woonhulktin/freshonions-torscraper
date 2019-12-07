@@ -1,11 +1,10 @@
 # Fresh Onions TOR Hidden Service Crawler
 
-## Archival Notice
+Project has been forked from [GoSecure/freshonions-torscraper](GoSecure/freshonions-torscraper)and will be maintained and use by https://onion.live/ to find darknet hidden services.
 
-This project has been archived and is no longer maintained.
-Rationale behind this choice is [described in this blog post](https://www.gosecure.net/blog/drugs-guns-fake-documents-hitmen-what-i-expected-and-much-more).
-If you are interested in taking over maintenance we will happily refer any active fork here.
-[Contact us](https://twitter.com/gosecure_inc).
+You may currently find find a copy of this forked currently deployed on https://freshonions.net/
+
+[Contact us](https://twitter.com/oniondotlive/).
 
 <hr/>
 
