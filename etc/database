@@ -1,4 +1,4 @@
-DB_HOST=freshonions-torscraper-db
+DB_HOST=localhost
 DB_USER=torscraper
 DB_PASS=CyberObs#2
 DB_BASE=tor

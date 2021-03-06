@@ -4,7 +4,9 @@ DIR=$( cd "$(dirname "$0")" ; pwd -P )
 (
 cd $BASEDIR/init
 echo "--- Shutdown services ---"
-./down_proxy.sh
+# ./down_proxy.sh
+sudo service tor stop
+sudo service haproxy stop
 echo "--- Restart privoxy service ---"
 ./restart_privoxy.sh
 echo "--- Start tor instance ---"
