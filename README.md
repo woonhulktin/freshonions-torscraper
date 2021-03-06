@@ -82,7 +82,7 @@ If you prefer doing it the manual way, follow the procedure below.
 
 * python
 * tor
-
+<!-- 
 ### Warning
 This software requires an Elasticsearch version in the 5.x series. As of this writing, the latest is 5.6.6. 6.x is known to be problematic. Also, if you decide to install Kibana or any extra functionalities linked to Elasticsearch, install them with the same version otherwise it won't work.
 
@@ -95,7 +95,7 @@ After booting, be sure that the link between Tor and Privoxy are working. To tes
     curl --socks5-hostname 127.0.0.1:9050 http://workingOnionWebsite
     curl --proxy 127.0.0.1:3129 http://workingOnionWebsite
 
-If it didn't work, fix the problem before crawling because all your onions will convert to a "dead" status. You can try to run the script:`start.sh` to reinitialize the links.
+If it didn't work, fix the problem before crawling because all your onions will convert to a "dead" status. You can try to run the script:`start.sh` to reinitialize the links. -->
 
 ### Tor service
 To use the new version of tor, you should follow these steps: https://www.torproject.org/docs/debian.html.en
@@ -109,14 +109,15 @@ If you used a version older than 0.3.x, you can have a problem with the update t
 So, I installed them:
 
         sudo apt-get install libzstd1
-
+        sudo apt-get install libssl1.1
+<!-- 
 To install libssl1.1, I used a Debian package: https://packages.ubuntu.com/bionic/libssl1.1
 
         lynx  https://packages.ubuntu.com/bionic/libssl1.1
 
 Use the bottom arrow to go at the bottom of the page and select your "Architecture Package Size". When you had made your choice, click on the right arrow, it will redirect you to the download page. Now it's the same thing. Use the bottom arrow to go down and choose the one that you want. When you find the one, just click on the right arrow. At the bottom of your interface, you will see `D) Download or C) Cancel`. Press `D`. When you will see the text `Save to disk`, go on it. Press the right arrow and press on `Enter`. When it's done click on `q` and `y` to quit.
 
-        dpkg -i libssl1.1_1.1.0g-2ubuntu2_amd64.deb #the name of your debain package
+        dpkg -i libssl1.1_1.1.0g-2ubuntu2_amd64.deb #the name of your debain package -->
 
 Finish the tor installation by looking to your version. If you have the last one (0.3.2 at the time that I wrote it).
 
@@ -157,12 +158,21 @@ then activate it.
 Now we will connect to MariaDB and create our database from `schema.sql`. We need to be in the folder to be able to see `schema.sql` because we will need it later.
 
     mysql -u root
-    CREATE DATABASE databaseName;
-    use databaseName;
-    source schema.sql
+    CREATE DATABASE tor;
+    use tor;
+    source schema.sql;
+
 To know if all works well you should have "Query OK" on each row. You should have 20 tables if you do this command:
 
     show tables;
+
+Create user for database.
+
+    mysql -u root
+    CREATE USER 'user'@localhost IDENTIFIED BY 'password';
+    GRANT ALL PRIVILEGES ON 'tor'.* TO 'user'@localhost;
+    FLUSH PRIVILEGES;
+    exit
 
 Need a modification to be able to connect Elasticsearh with our database.
 
@@ -225,7 +235,7 @@ Now you can test if it works with the new generation of onions (V3) (test all po
 
 If you get something like "Privoxy localhost port forwarding" don't continue, it will not work.
 
-    ./push.sh someoniondirectory.onion
+    ./push.sh http://msydqstlz2kzerdg.onion/onions/
 
 To start the flask server to see our web interface. First, create a flask secret with:
 
@@ -242,8 +252,7 @@ To set up the port forwarding from your server to your browser, do this command 
 
 To try if it works well for now.
 
-    scripts/push.sh someoniondirectory.onion
-    scripts/push.sh anotheroniondirectory.onion
+    scripts/push.sh http://msydqstlz2kzerdg.onion/onions/
     
 Run:
 
