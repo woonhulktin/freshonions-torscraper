@@ -8,7 +8,8 @@ import werkzeug.wrappers
 from flask import current_app as app
 import inspect
 import sys
-from werkzeug.contrib.cache import MemcachedCache
+# from werkzeug.contrib.cache import MemcachedCache
+from cachelib.memcached import MemcachedCache
 import os
 import functools 
 import logging
